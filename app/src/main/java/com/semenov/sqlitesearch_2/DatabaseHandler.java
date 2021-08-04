@@ -12,18 +12,18 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Database Version
-    private static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 1;
 
     //Database Name
-    private static final String DATABASE_NAME = "contactsManager";
+    public static final String DATABASE_NAME = "contactsManager";
 
     //Contacts table name
-    private static final String TABLE_CONTACTS = "contacts";
+    public static final String TABLE_CONTACTS = "contacts";
 
     //Contacts Table Columns names
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_PH_NUM = "phone_number";
+    public static final String KEY_ID = "id";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_PH_NUM = "phone_number";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
