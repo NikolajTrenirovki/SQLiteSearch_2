@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         ArrayList <Contact> contacts = new ArrayList<>();
 
         contacts.add(new Contact("Имя", "номер"));
-        contacts.add(new Contact("Имя", "номер"));
-        contacts.add(new Contact("Имя", "номер"));
-        contacts.add(new Contact("Имя", "номер"));
+        contacts.add(new Contact("Имя2", "номер2"));
+        contacts.add(new Contact("Имя3", "номер3"));
+        contacts.add(new Contact("Имя4", "номер4"));
 
         MainAdapter mainAdapter = new MainAdapter(contacts);
         recyclerView.setAdapter(mainAdapter);
