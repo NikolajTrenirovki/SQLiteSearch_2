@@ -1,5 +1,6 @@
 package com.semenov.sqlitesearch_2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        holder.name.setText(contactArrayList.get(position).getName());
-        holder.phoneNumber.setText(contactArrayList.get(position).getPhoneNumber());
+        try {
+            holder.name.setText(contactArrayList.get(position).getName());
+            holder.phoneNumber.setText(contactArrayList.get(position).getPhoneNumber());
+        } catch (Exception ex){
+            Log.d("mLog", "Not text in holder");
+        }
     }
 
     @Override

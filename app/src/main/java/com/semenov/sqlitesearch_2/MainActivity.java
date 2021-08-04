@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     RecyclerView recyclerView;
     DatabaseHandler databaseHandler;
-    Button btnRead;
+    Button btnRead, btnSearch;
 
     EditText etName, etPhoneNumber;
 
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnRead = (Button) findViewById(R.id.button);
         btnRead.setOnClickListener(this);
+
+        btnSearch = (Button) findViewById(R.id.button2);
+        btnSearch.setOnClickListener(this);
 
 /*        etName = (EditText) findViewById(R.id.etName);
         etPhoneNumber = (EditText) findViewById(R.id.etEmail);*/
@@ -53,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contacts.add(new Contact("Имя3", "номер3"));
         contacts.add(new Contact("Имя4", "номер4"));
         contacts.add(        databaseHandler.getContact("Имя"));
+        contacts.add(        databaseHandler.getContact("Имя5"));
+        contacts.add(        databaseHandler.getContact("Имя3"));
 
         MainAdapter mainAdapter = new MainAdapter(contacts);
         recyclerView.setAdapter(mainAdapter);
@@ -86,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("mLog","0 rows");
 
             cursor.close();
+
+            case R.id.button2:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
         }
 
     }

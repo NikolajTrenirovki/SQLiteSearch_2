@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,11 +64,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     Contact getContact(String name) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
-                        KEY_NAME, KEY_PH_NUM }, KEY_NAME + "=?",
-                new String[] { name }, null, null, null, null);
+            Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
+                            KEY_NAME, KEY_PH_NUM }, KEY_NAME + "=?",
+                    new String[] { name }, null, null, null, null);
 
 /*    // Getting single contact
     Contact getContact(int id) {
@@ -84,14 +86,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return contact;*/
 
-        Contact contact = null;
-        if (cursor.moveToFirst()) {
-            contact = new Contact(Integer.parseInt(cursor.getString(0)),
-                    cursor.getString(1), cursor.getString(2));
-        }
-        cursor.close();
+            Contact contact = null;
+            if (cursor.moveToFirst()) {
+                contact = new Contact(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2));
+            }
+            cursor.close();
 // can return null if no contact was found.
-        return contact;
+            return contact;
+        } catch (Exception ex){
+            Log.d("mLog","No this name in database");
+        }
+            return null;
     }
 
     // Getting All Contacts
