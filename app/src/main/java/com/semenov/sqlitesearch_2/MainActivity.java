@@ -44,12 +44,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         databaseHandler.addContact(new Contact("Имя3", "номер3"));
         databaseHandler.addContact(new Contact("Имя4", "номер4"));
 
+       // databaseHandler.getContact("Имя");
+
         ArrayList <Contact> contacts = new ArrayList<>();
 
         contacts.add(new Contact("Имя", "номер"));
         contacts.add(new Contact("Имя2", "номер2"));
         contacts.add(new Contact("Имя3", "номер3"));
         contacts.add(new Contact("Имя4", "номер4"));
+        contacts.add(        databaseHandler.getContact("Имя"));
 
         MainAdapter mainAdapter = new MainAdapter(contacts);
         recyclerView.setAdapter(mainAdapter);
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 do {
                     Log.d("mLog", "ID = " + cursor.getInt(idIndex) +
                             ", name = " + cursor.getString(nameIndex) +
-                            ", email = " + cursor.getString(emailIndex));
+                            ", phone = " + cursor.getString(emailIndex));
                 } while (cursor.moveToNext());
             } else
                 Log.d("mLog","0 rows");
