@@ -4,17 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseHandler databaseHandler;
     RecyclerView recyclerView;
     EditText editText;
+    Button button;
 /*    TextView textView;
     TextView textView2;*/
 
@@ -30,13 +34,28 @@ public class SearchActivity extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.editText);
 
+        button = (Button) findViewById(R.id.buttonSearch);
+        button.setOnClickListener(this);
+
 /*        textView = (TextView) findViewById(R.id.textView3);
         textView2 = (TextView) findViewById(R.id.textView4);*/
+    }
 
-        ArrayList<Contact> contacts = new ArrayList<>();
-        contacts.add(databaseHandler.getContact("Имя")); // add text from edittext
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+                Log.d("mLog","onClick");
+        String name = editText.getText().toString();
+        switch (view.getId()){
 
-        MainAdapter mainAdapter = new MainAdapter(contacts); 
-        recyclerView.setAdapter(mainAdapter);
+            case R.id.buttonSearch:
+                ArrayList<Contact> contacts = new ArrayList<>();
+                contacts.add(databaseHandler.getContact(name));
+
+                MainAdapter mainAdapter = new MainAdapter(contacts);
+                recyclerView.setAdapter(mainAdapter);
+                Log.d("mLog","onClick_2");
+                break;
+        }
     }
 }
